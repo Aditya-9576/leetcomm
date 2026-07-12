@@ -3,29 +3,27 @@
             // Language: C++
             // Link: https://leetcode.com/problems/simplify-path/
 
+class Solution {
+public:
+    string simplifyPath(string path) {
+        stack<string>st;string yy="",uu="";
+        yy+='/';uu+=path[0];
+        int u=0,n=path.size();
+        u++;
+        st.push(uu);
+        while(u<n){
+            if(path[u]=='/'){
+                u++;
+                if(st.top()!=yy)st.push(yy);
+                continue;
             }
-            if(str==".."){
-                if(st.empty()==false)st.pop();
-            }else if(str=="."){
-                if(st.empty()==false)st.pop();
-                if(st.empty())st.push(yy);
-            }
-            else {
-                st.push(str);
-            }
-        }string ans="";
-        while(!st.empty()){
             string str="";
             while(u<n && path[u]!='/'){
                 str+=path[u];u++;
             }
-                continue;
-            ans=st.top()+ans;
-            st.pop();
-        }if(ans.size()==0)return yy;
-        if(ans[0]!='/')ans=yy+ans;
-        if(ans[ans.size()-1]=='/')ans.pop_back();
-        if(ans.size()==0)return yy;
-        return ans;
-    }
-};
+            if(str==".."){
+                if(st.empty()==false)st.pop();
+                if(st.empty()==false)st.pop();
+                if(st.empty())st.push(yy);
+            }else if(str=="."){
+            }
